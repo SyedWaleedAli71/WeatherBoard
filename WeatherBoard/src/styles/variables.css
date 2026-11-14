@@ -1,0 +1,27 @@
+:root {
+  /* Core palette — original WeatherBoard theme values. */
+  --color-bg: #0b1220;
+  --color-sidebar: #0e1728;
+  --color-surface: #111c2d;
+  --color-surface-hover: #142a40;
+  --color-border: #243449;
+  --color-accent: #38bdf8;
+  --color-accent-strong: #0ea5e9;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-text-dim: #64748b;
+  --color-success: #22c55e;
+  --color-danger: #fb7185;
+
+  /* Typography */
+  --font-sans: "Inter", sans-serif;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 14px;
+  --radius-xl: 19px;
+
+  /* Elevation */
+  --shadow-hero: 0 18px 55px #02081750;
+}
