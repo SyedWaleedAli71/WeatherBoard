@@ -798,3 +798,654 @@ No files were deleted. The unused template assets retained in Phase 1 were left 
 
 Deploy the production build, create the public repository, capture final screenshots and install
 evidence, verify the GeoDB path with a real key if available, and finalise the submission package.
+
+---
+
+# Prompt-3: Professional UI/UX, Complete Testing & Submission Preparation
+
+| Field | Value |
+| --- | --- |
+| Date executed | 14 November 2026 |
+| Status | Implementation, verification, and documentation complete; deployment and public repository outstanding |
+| AI IDE | OpenCode Desktop |
+| Agent | OpenCode coding agent (model: Big Pickle) |
+| Session | Session 3 — UI/UX polish, full feature/PWA/security audit, final documentation |
+
+## Prompt submitted (verbatim)
+
+<details>
+<summary>Expand the full Prompt-3 text</summary>
+
+````text
+# PROMPT-3: WeatherBoard — Professional UI/UX, Complete Testing & Submission Preparation
+
+## 1. Your Role
+
+Continue as the primary AI development agent for my existing WeatherBoard project.
+
+This is the final development and quality-assurance phase before I personally deploy and submit the application to Edspire.
+
+The previous development phases were:
+
+- Prompt-1: Project Understanding, PDF Analysis & Folder Structure.
+- Prompt-2: Core Features Implementation.
+
+Now complete the remaining work in one carefully managed phase.
+
+**Important:** I want the application fully implemented, polished, tested, and prepared for deployment. I will handle the actual hosting and deployment myself.
+
+Do not create a new project or replace the existing application.
+
+## 2. Review the Complete Project History
+
+Before making changes:
+
+1. Read the complete Edspire assessment PDF.
+2. Read the existing PROMPTS.md.
+3. Review Prompt-1 and Prompt-2 implementation records.
+4. Inspect the complete current project structure.
+5. Inspect all React components, services, hooks, styles, and configuration files.
+6. Review package.json and installed dependencies.
+7. Check the current API integrations and environment configuration.
+8. Identify unfinished features, errors, and technical limitations.
+
+Do not assume that a feature was successfully implemented just because a previous report says it was.
+
+Verify everything against the actual source code.
+
+## 3. Professional UI/UX Improvements
+
+Improve the existing WeatherBoard interface while preserving its established design identity.
+
+Existing theme:
+
+- Background: #0B1220
+- Card background: #111C2D
+- Accent: #38BDF8
+- Typography: Inter
+
+The application should feel like a polished, professional consumer weather product.
+
+Study the design principles of:
+
+- Linear — typography, spacing, empty states.
+- Vercel Dashboard — clean dashboard layout.
+- Stripe — clear validation and error feedback.
+- Mercury — professional information hierarchy.
+- Modern weather dashboards — forecast cards and weather visualization.
+
+Do not copy these websites.
+
+### Improve the following:
+
+- Dashboard layout and visual hierarchy.
+- Sidebar and navigation consistency.
+- Search field and autocomplete presentation.
+- Weather cards and forecast presentation.
+- Favourite cities panel.
+- Button styles and interaction states.
+- Icons and weather condition visuals.
+- Typography, spacing, and alignment.
+- Empty states.
+- Loading states and skeletons where appropriate.
+- API error messages.
+- Offline mode banner.
+- Notification settings interface.
+- Mobile navigation and touch interactions.
+
+Keep the design clean, readable, consistent, and professional.
+
+Do not introduce unnecessary animations or visual effects.
+
+## 4. Responsive Design Verification
+
+The application must work correctly at these exact viewport widths:
+
+- Mobile: 375px.
+- Tablet: 768px.
+- Desktop: 1280px.
+
+Check:
+
+- No horizontal scrolling.
+- No overlapping cards.
+- No clipped text.
+- No broken navigation.
+- No inaccessible buttons.
+- No overflowing forecast sections.
+- Proper spacing on small screens.
+- Touch targets at least 44×44px on mobile.
+
+Fix all responsive issues you discover.
+
+Do not consider the application responsive merely because CSS media queries exist. Verify the actual layouts.
+
+## 5. Complete Core Feature Verification
+
+Verify every mandatory feature from the Edspire PDF.
+
+### A. City Search and Autocomplete
+
+- Verify GeoDB Cities API integration.
+- Verify live suggestions while typing.
+- Verify the 300ms debounce requirement.
+- Verify city selection.
+- Verify no-results state.
+- Verify API failure state.
+- Verify empty input validation.
+- Verify validation on blur.
+- Prevent unnecessary duplicate API requests.
+
+### B. Weather Data
+
+- Verify OpenWeatherMap integration.
+- Verify actual current weather data.
+- Verify temperature, humidity, wind speed, and condition icons.
+- Verify the five-day forecast.
+- Verify correct city and location information.
+- Verify loading and error states.
+- Verify Open-Meteo fallback when the primary API fails or is rate-limited.
+
+Do not display mock data as actual weather.
+
+### C. Favourite Cities
+
+- Maximum five favourite cities.
+- Save favourites in localStorage.
+- Restore favourites after refresh.
+- Prevent duplicates.
+- Verify removal confirmation.
+- Handle unavailable localStorage gracefully.
+- Verify quick access to saved cities.
+
+### D. Form Validation
+
+Verify:
+
+- Empty city input.
+- Invalid city.
+- No API results.
+- Network failure.
+- API errors.
+- Clear inline error messages.
+- Validation on blur and submit.
+
+Never use a generic "Something went wrong" message when the actual problem can be identified.
+
+### E. Progressive Web App
+
+Verify:
+
+- Valid web manifest.
+- Correct application name.
+- 192px icon.
+- 512px icon.
+- Correct theme_color.
+- display: standalone.
+- Service worker registration.
+- Application shell caching.
+- Last-viewed city weather caching.
+- Offline mode banner.
+- Offline access to the last cached city.
+- Recovery when the internet connection returns.
+
+Do not claim offline weather updates are available when the device has no internet connection.
+
+## 6. Push Notifications — Important Technical Requirement
+
+The Edspire assessment requires a daily morning weather reminder that can fire even when the application tab is closed.
+
+Implement the strongest technically valid solution compatible with the assessment's client-side-only restriction.
+
+First, inspect whether the current implementation supports actual Web Push.
+
+Important technical rules:
+
+- Explain the notification purpose before requesting browser permission.
+- Request permission only after an explicit user action.
+- Allow the user to choose a reminder time.
+- Use a service worker for persistent notification display.
+- Handle unsupported browsers gracefully.
+- Handle denied permissions without breaking the rest of the application.
+- Allow users to enable, disable, and update their reminder settings.
+- Do not request notification permission automatically on page load.
+
+**Critical limitation:**
+
+The Notifications API alone cannot guarantee a daily scheduled notification while the application is closed.
+
+Reliable Web Push delivery requires a push message sender, such as a server-side sender or a supported third-party push service. A service worker cannot independently wake itself every morning and generate a reliable scheduled push notification.
+
+Therefore:
+
+1. Investigate whether a genuinely free, assessment-compatible third-party push solution is available.
+2. Do not create a backend server because this assessment specifies client-side-only development.
+3. Do not introduce paid services without my approval.
+4. Do not claim that a local timer, setInterval, or Periodic Background Sync is equivalent to reliable daily Web Push.
+5. If full closed-tab scheduling is impossible under the permitted architecture, implement the best honest client-side notification experience, provide an appropriate fallback, and document the limitation clearly.
+6. Do not fabricate successful background push tests.
+
+Keep the rest of the application functional even if notifications are unsupported.
+
+## 7. API and Environment Security
+
+Inspect the project's environment setup.
+
+Expected variables may include:
+
+- VITE_OPENWEATHER_API_KEY
+- VITE_RAPIDAPI_KEY
+- VITE_RAPIDAPI_HOST
+
+Use only the variables actually needed by the implementation.
+
+Requirements:
+
+- Keep actual local credentials inside .env.
+- Ensure .env is ignored by Git.
+- Maintain .env.example with placeholder values only.
+- Never write actual API keys into source files.
+- Never print actual API keys in the final report.
+- Never commit secrets.
+- Explain that VITE_ environment variables are exposed in the browser bundle and are not private secrets.
+
+Do not change valid API configuration unnecessarily.
+
+## 8. Browser and Functional Testing
+
+Perform a structured testing pass.
+
+Test the following:
+
+1. Application startup.
+2. Initial dashboard rendering.
+3. City search.
+4. Autocomplete suggestions.
+5. City selection.
+6. Current weather loading.
+7. Five-day forecast.
+8. OpenWeatherMap API failure.
+9. Open-Meteo fallback.
+10. Invalid city handling.
+11. Empty search validation.
+12. Favourite city addition.
+13. Favourite city removal confirmation.
+14. Maximum five favourites.
+15. localStorage persistence.
+16. localStorage unavailable behavior.
+17. Offline mode.
+18. Cached last-viewed city.
+19. PWA installation configuration.
+20. Notification permission handling.
+21. Responsive layout at 375px, 768px, and 1280px.
+22. Browser console errors.
+23. Broken imports and missing assets.
+
+Use the available browser automation or testing tools if configured.
+
+If browser automation is unavailable, use the available build, unit, and manual verification methods.
+
+Do not claim that you visually tested a browser viewport unless you actually did.
+
+## 9. Build and Bug Fixing
+
+Run the project's appropriate commands.
+
+At minimum:
+
+- Install missing dependencies only when necessary.
+- Run npm run build.
+- Run available lint checks.
+- Run available automated tests.
+- Fix errors caused by your changes.
+- Check for broken imports.
+- Check for missing files.
+- Check for unused or unnecessary dependencies.
+
+If a test command does not exist, report that rather than inventing a passing result.
+
+The final production build must succeed before you declare the project ready.
+
+Do not hide warnings or unrelated pre-existing issues.
+
+## 10. README.md — Final Documentation
+
+Create or update the root-level README.md.
+
+Include:
+
+1. Project overview.
+2. Main features.
+3. Technologies used.
+4. APIs used and their purposes.
+5. Project folder structure.
+6. Installation instructions.
+7. Local development commands.
+8. Environment variable setup.
+9. Build instructions.
+10. PWA and offline functionality.
+11. Notification functionality and limitations.
+12. Architecture decisions.
+13. Known limitations.
+14. Testing performed.
+15. Deployment instructions for Vercel or Netlify.
+16. A placeholder for the final live application URL.
+
+Do not invent a live URL. I will add it after deployment.
+
+## 11. GitHub and Submission Preparation
+
+Prepare the repository for a public GitHub submission.
+
+Inspect:
+
+- .gitignore.
+- .env protection.
+- .env.example.
+- Unnecessary generated files.
+- Debugging code.
+- Temporary test files.
+- Console logging.
+- Unused dependencies.
+- Missing documentation.
+
+Do not delete existing files without understanding their purpose.
+
+Do not push, publish, or deploy anything without my approval.
+
+Do not run destructive Git commands.
+
+I will personally handle:
+
+- GitHub push.
+- Vercel or Netlify hosting.
+- Production environment variables.
+- Final live URL.
+- Email submission to jobs@edspire.app.
+
+Provide the exact recommended commands and deployment steps in your final report.
+
+## 12. PROMPTS.md — Mandatory Complete History
+
+This requirement is extremely important.
+
+Update the existing root-level PROMPTS.md.
+
+Append this instruction as:
+
+# Prompt-3: Professional UI/UX, Complete Testing & Submission Preparation
+
+The same PROMPTS.md must contain the complete chronological history:
+
+1. Prompt-1: Project Understanding, PDF Analysis & Folder Structure.
+2. Prompt-2: Core Features Implementation.
+3. Prompt-3: Professional UI/UX, Complete Testing & Submission Preparation.
+
+For each prompt, preserve:
+
+- Complete original prompt text.
+- Date.
+- AI IDE used: OpenCode Desktop.
+- Actual work completed.
+- Files created or modified.
+- Testing results.
+- Issues and limitations.
+
+Rules:
+
+- Never delete Prompt-1 or Prompt-2.
+- Never overwrite the previous prompt history.
+- Never create separate prompt-history files.
+- Do not invent missing prompt text or results.
+- Preserve the original order.
+- Append Prompt-3 only after completing this phase.
+- Record actual work, not planned work.
+
+## 13. Final Project Report
+
+After completing the work, provide a professional report with:
+
+### A. UI/UX
+- Improvements completed.
+- Responsive testing results.
+
+### B. Features
+- All mandatory PDF requirements.
+- Completed features.
+- Partially completed features.
+- Remaining limitations.
+
+### C. APIs
+- OpenWeatherMap status.
+- GeoDB Cities status.
+- Open-Meteo fallback status.
+- API configuration issues, if any.
+
+Never reveal actual API keys.
+
+### D. PWA and Notifications
+- Manifest status.
+- Service worker status.
+- Offline verification.
+- Push notification implementation status.
+- Any architectural limitations.
+
+### E. Testing
+- Build result.
+- Lint result.
+- Automated test result.
+- Browser verification result.
+- Responsive viewport results.
+
+Clearly distinguish tests that passed, failed, were skipped, or could not be performed.
+
+### F. Documentation and GitHub
+- README.md status.
+- PROMPTS.md status.
+- .env and .gitignore status.
+- Repository readiness.
+
+### G. My Next Steps
+Give me the exact commands and instructions I must follow to:
+
+1. Run the application locally.
+2. Push it to GitHub.
+3. Deploy it using Vercel or Netlify.
+4. Configure production environment variables.
+5. Obtain the live URL.
+6. Submit the project to Edspire.
+
+## FINAL INSTRUCTIONS
+
+This is the final development and testing phase.
+
+Make the existing WeatherBoard application professional, functional, responsive, and ready for deployment.
+
+Prioritize the Edspire PDF requirements over unnecessary extra features.
+
+Do not waste time building optional bonus features until every mandatory requirement has been verified.
+
+Do not create a backend.
+
+Do not deploy or publish the application.
+
+Do not expose API credentials.
+
+Do not fabricate functionality or test results.
+
+Preserve all previous work and maintain the complete prompt history in the same PROMPTS.md file.
+
+Finish the implementation, verification, documentation, and final report before stopping.
+````
+
+</details>
+
+## Implementation summary
+
+Prompt-3 was treated as a verify-first phase: every claim from Prompt-1 and Prompt-2 was checked
+against the source and the production build before it was documented. No feature was accepted just
+because an earlier report said it worked.
+
+### UI/UX improvements completed
+
+- Removed the duplicated Settings entry from the sidebar navigation and made the remaining
+  navigation coherent.
+- Replaced the sidebar's vague promo card with honest, product-specific information.
+- Improved the empty-favourites state, including clearer guidance and a search affordance.
+- Added condition-aware icon tones through `src/utils/weatherTone.js`, so clear, cloudy, rain,
+  snow, and storm states read differently without changing the established palette.
+- Strengthened search presentation with a `focus-within` treatment, clear active/pressed states,
+  and consistent hover/focus feedback on buttons and links.
+- Improved forecast-card presentation and selection feedback.
+- Made the app footer wrap cleanly and show the real active provider (`OpenWeatherMap`,
+  `Open-Meteo`, or `Open-Meteo (backup)`).
+- Rewrote the notification dialog copy to explain the reminder first, show the chosen time, show
+  the next scheduled reminder, and state the closed-tab limitation plainly.
+- Made the mobile drawer overlay a real accessible button and verified the drawer fits the
+  viewport with a 44×44 px close control.
+- Fixed colour-contrast failures by moving secondary text to `#8da0b6` on dark surfaces.
+- Removed a forecast-card `aria-label` that conflicted with its visible text, resolving the
+  label-in-name audit failure.
+- Added `public/robots.txt` so the SEO audit sees a valid robots file.
+
+### Feature verification completed
+
+- **Search/autocomplete:** typing `L`, `Lo`, `Lon` produced exactly one Open-Meteo geocoding
+  request after the 300 ms debounce, returned 8 suggestions, and selecting London loaded its live
+  weather and five-day forecast.
+- **Weather:** live Open-Meteo data verified for Karachi, London, Paris, and Tokyo. Current
+  conditions, humidity, wind, visibility, sunrise/sunset, and five daily cards all rendered.
+- **OpenWeatherMap:** implemented as an optional primary provider. Normalisation was verified with
+  a local fixture (Karachi 24 °C, clear sky, 58 % humidity, 15 km/h wind, 8 km visibility, five
+  days, source `OpenWeatherMap`). A 503 fixture verified the automatic Open-Meteo fallback and the
+  `Open-Meteo (backup)` label. No live key was available, so the live OWM path remains unverified.
+- **Favourites:** add/remove, toasts, `3/5 → 4/5 → 3/5` count updates, removal confirmation,
+  duplicate prevention, and persistence after reload verified. Paris was added and then removed
+  without residue.
+- **Validation:** empty, short, over-long, no-results, network, and API failures keep specific
+  inline messages; no generic “Something went wrong” copy was introduced.
+- **Offline/PWA:** with the network forced offline, the app issued **0 weather requests**, showed a
+  clear no-saved-weather state for London, showed `SAVED WEATHER` and `Not live · saved <time>` for
+  Tokyo, and recovered automatically to `LIVE WEATHER` on `online`. The app shell also loaded from
+  the service worker with the local origin server stopped.
+- **Notifications:** the dialog explains the behaviour before permission, keeps permission denied
+  until the explicit action, allows a user-chosen time (`07:00` default), exposes a test action,
+  explains denied permission, and states that closed-tab delivery is not guaranteed. Notification
+  Triggers were detected as unsupported and were not used.
+- **Console:** no console errors on the final live dashboard, PWA, offline, or responsive checks.
+
+### Responsive verification completed
+
+A harness loaded the production build in same-origin iframes with `scrolling="no"` and exact
+`width`/`height` attributes so the inner viewport was exactly the target width.
+
+| Viewport | Inner/client width | Horizontal scroll | Forecast columns | Overlaps | Clipped text | Small targets |
+| --- | --- | --- | --- | --- | --- | --- |
+| 375 px | 375 px | None (`scrollWidth = 375`) | 2 | None | None | None (`< 44×44`) |
+| 768 px | 768 px | None (`scrollWidth = 768`) | 3 | None | None | None |
+| 1280 px | 1280 px | None (`scrollWidth = 1280`) | 5 | None | None | None |
+
+The mobile drawer stayed inside the viewport, its overlay was a button labelled “Close navigation
+menu”, its close control measured 44×44 px, and every drawer target met 44×44 px.
+
+### Testing and build results
+
+- `npm run build` — **passes**. Final output: JS 414.44 kB (133.02 kB gzip), CSS 35.00 kB
+  (7.18 kB gzip), 50 precache entries (1,001.21 KiB), `dist/sw.js` generated.
+- The 50 precache entries resolve to **45 unique URLs** because five assets appear in both
+  `includeAssets` and `globPatterns`. This is expected and is not a build failure.
+- `npm run lint` — **passes** with no errors and two intentional `react(set-state-in-effect)`
+  warnings in `src/hooks/useWeather.js` and `src/hooks/useCitySearch.js`.
+- Lighthouse on the production build — **Accessibility 100, Best Practices 100, SEO 100**, zero
+  failing audits, zero console errors.
+- PWA — service worker active and controlling, manifest `standalone` with `#0B1220`, real
+  192×192/512×512 icons, `index.html`, `manifest.webmanifest`, and `notification-sw.js` in the
+  precache, `/robots.txt` returning 200.
+- **Automated tests:** none exist in the project and none are claimed. All verification above was
+  browser automation, build, and lint work.
+
+### Security and repository review
+
+- `.env` remains Git-ignored; `.env.example` contains placeholders only.
+- No API key was printed, copied into source, committed, or embedded in documentation.
+- The README and `.env.example` now state explicitly that every `VITE_*` value is bundled into the
+  public client and is not a private secret.
+- Temporary test pages were kept out of the source tree; the final rebuild removed the temporary
+  responsive harness from `dist/`.
+- `dist/` and `node_modules/` remain Git-ignored.
+- No Git repository, remote, deployment, or publication was created.
+
+## Files created
+
+| File | Purpose |
+| --- | --- |
+| `src/utils/weatherTone.js` | Maps weather-condition families to icon tone classes used by the current-weather and forecast visuals. |
+| `public/robots.txt` | Valid `User-agent: *` / `Allow: /` file that satisfies the SEO audit. |
+
+## Files modified
+
+| File | Change |
+| --- | --- |
+| `src/services/weatherService.js` | Added optional OpenWeatherMap primary provider (`/weather` + `/forecast`), normalisation, local-day grouping, provider-specific errors, `isOpenWeatherConfigured()`, and automatic Open-Meteo fallback with `Open-Meteo (backup)` attribution. |
+| `src/utils/weatherCodes.js` | Added `describeOpenWeather(code, isDay)` mapping for OpenWeatherMap condition IDs while preserving the WMO mapping. |
+| `src/pages/Dashboard.jsx` | Provider-aware footer/attribution and current source orchestration. |
+| `src/components/layout/Sidebar.jsx` | Removed duplicate Settings navigation; improved the sidebar information card. |
+| `src/components/layout/MainLayout.jsx` | Accessible mobile overlay button and drawer interaction refinements. |
+| `src/components/favorites/FavoriteCities.jsx` | Improved empty-favourites state and list presentation. |
+| `src/components/notifications/NotificationSettings.jsx` | Added explicit closed-tab limitation and next-reminder copy; retained denied/unsupported handling. |
+| `src/components/weather/Forecast.jsx` | Removed the accessible name that conflicted with visible card text. |
+| `src/components/weather/CurrentWeather.jsx` | Condition-aware visual tone integration. |
+| `src/components/ui/WeatherIcon.jsx` | Condition-aware icon tone integration. |
+| `src/App.css` | UI polish, focus/active states, wrapping footer, accessible secondary colours (`#8da0b6`), responsive drawer and touch-target rules. |
+| `src/index.css` | Supporting interaction/focus refinements. |
+| `.env.example` | Documented `VITE_OPENWEATHER_API_KEY` and the public-bundle warning; retained GeoDB/Open-Meteo variables. |
+| `README.md` | Rewritten for the final Prompt-3 state: OWM/fallback, Lighthouse results, PWA/offline evidence, testing, limitations, and deployment commands. |
+| `PROMPTS.md` | Prompt-1 and Prompt-2 preserved; Prompt-3 appended in this same file. |
+
+## Dependencies added
+
+**None.** No package was installed, removed, or upgraded during Prompt-3. No backend, paid service,
+TypeScript migration, or new project was introduced.
+
+## Issues discovered and resolved
+
+- The README described Open-Meteo as the only weather provider, which no longer matched the code —
+  rewritten to document OpenWeatherMap optional primary and Open-Meteo fallback accurately.
+- The sidebar repeated a Settings destination in the navigation — removed the duplicate.
+- Low-contrast secondary text failed WCAG AA in Lighthouse — changed the affected colours to
+  `#8da0b6`; Accessibility rose from 96 to 100.
+- A forecast-card `aria-label` did not match its visible text — removed the conflicting label;
+  the label-in-name audit now passes.
+- Lighthouse reported an invalid/missing `robots.txt` — added a valid `public/robots.txt`; SEO
+  rose from 80 to 100.
+- The notification dialog mentioned limitations but not plainly enough — the closed-tab limitation
+  and next-reminder time are now explicit.
+- The responsive harness initially produced 360/753 px inner widths because iframe borders reduced
+  the content box — switched to `scrolling="no"` exact-size frames and re-verified true
+  375/768/1280 px viewports.
+- Mobile drawer targets and the close control required another pass — confirmed 44×44 px and a
+  viewport-fitting drawer.
+- Temporary responsive-test HTML was generated inside `dist/` for verification — removed by the
+  final clean production rebuild so it is not part of the handoff.
+
+## Limitations and incomplete requirements
+
+- **OpenWeatherMap live path unverified** — no real key was configured; only fixture-based
+  normalisation and fallback were tested. Current production configuration is Open-Meteo-only.
+- **GeoDB live path unverified** — no RapidAPI key was configured; only the Open-Meteo geocoding
+  path was exercised live.
+- **Closed-tab notifications cannot be guaranteed** under the client-only constraint. Page timers,
+  a service-worker timer, and periodic sync are attempted as best effort; reliable delivery needs
+  a Web Push sender, which this project deliberately does not include.
+- **Granted-permission delivery untested** — the test browser's permission is `denied`; unsupported
+  and denied states were verified, but a successful granted notification was not observed.
+- **`localStorage`-unavailable path** is code-inspected only; it was not destructively simulated.
+- **No deployment URL and no public GitHub repository** exist yet; the working copy is not a Git
+  repository. Deployment and submission remain the owner's responsibility.
+- Optional bonus features remain unimplemented by design.
+
+## Recommended next step (post-Prompt-3)
+
+Follow [Deployment and submission](README.md#deployment-and-submission) in the README: create
+the public repository, push, deploy to Vercel or Netlify, configure optional `VITE_*` variables,
+add the live URL to the README, and submit both links to `jobs@edspire.app`.
